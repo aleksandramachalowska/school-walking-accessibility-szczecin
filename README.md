@@ -2,7 +2,6 @@
 
 ## Opis projektu
 Projekt przedstawia analizę dostępności pieszej szkół w dzielnicy Śródmieście Szczecina z wykorzystaniem analizy sieciowej. Celem było określenie obszarów, do których można dotrzeć pieszo ze szkół w czasie 5, 10 i 15 minut. Analizę przeprowadzono z wykorzystaniem QGIS, PostgreSQL/PostGIS oraz pgRouting. Podstawą analizy była sieć piesza utworzona na podstawie danych OpenStreetMap, dla której czas przejścia poszczególnych odcinków określono na podstawie ich długości i przyjętej prędkości poruszania się.
-Zakres prac obejmował obróbkę danych, przygotowanie na ich podstawie grafu czasu oraz utworzenie izochron. Ważnym elementem było utworzenie grafu czasu z kosztem przejścia wyrażonym w sekundach. Dla większości dróg przyjęto prędkość poruszania 5 km/h, jednak dla ścieżek było to 4,5 km/h, a dla schodów które zwykle pokonuje się wolniej 2,5 km/h. Dalej odnaleziono najbliższe każdej szkole węzły grafu, z których dzięki algorytmowi Dijkstra obliczono dokąd można przejść po sieci w ustalonym czasie 5, 10 i 15 minut. Wynikiem analizy była mapa zawierająca rozmieszczenie izochron.
 
 ## Wykorzystane technologie
 
