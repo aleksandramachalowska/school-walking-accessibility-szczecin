@@ -38,6 +38,10 @@ Czas przejścia został zapisany w sekundach i wykorzystany jako koszt pokonania
 Dla każdej szkoły znaleziono najbliższy węzeł grafu. Następnie z wykorzystaniem algorytmu Dijkstra w pgRouting wyznaczono węzły osiągalne w czasie do 5, 10 i 15 minut od każdej szkoły.
 Na podstawie wyników analizy utworzono izochrony czasu dojścia i przygotowano mapę wynikową w QGIS.
 
+## Mapa wynikowa
+
+![Mapa](szkoly.png)
+
 ## Ograniczenia
 
 Należy uwzględnić, że dane OpenStreetMap mają charakter społecznościowy, co może wpływać na ich kompletność i aktualność.  
