@@ -27,7 +27,7 @@ Z danych OpenStreetMap wyselekcjonowano elementy sieci możliwe do wykorzystania
 
 Na podstawie przygotowanej sieci utworzono węzły w miejscach końców i przecięć odcinków oraz dwukierunkowy graf sieci pieszej. Fragment utworzonego grafu przedstawiono poniżej.
 ![Fragment grafu](graf_szczecin.jpg)
-Dla każdej krawędzi obliczono jej długość oraz czas przejścia. Przyjęto następujące prędkości:
+Dla każdej krawędzi obliczono jej długość oraz czas przejścia. Przyjęto następujące prędkości: 
 5 km/h – większość dróg,
 4,5 km/h – ścieżki,
 2,5 km/h – schody.
