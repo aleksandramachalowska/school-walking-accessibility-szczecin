@@ -36,7 +36,7 @@ Based on the analysis results, walking-time isochrones were created and a final 
 
 ## Final Map
 
-![Mapa](szkoly.png)
+![Mapa](walking_accessibility.png)
 
 ## Limitations
 OpenStreetMap data is community-generated, which may affect its completeness and accuracy.
