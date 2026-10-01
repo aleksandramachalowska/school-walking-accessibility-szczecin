@@ -1,58 +1,49 @@
-# Analiza dostępności pieszej szkół w Śródmieściu Szczecina
+# Walking Accessibility to Schools in Central Szczecin
 
-## Opis projektu
-Projekt przedstawia analizę dostępności pieszej szkół w dzielnicy Śródmieście Szczecina z wykorzystaniem analizy sieciowej. Celem było określenie obszarów, do których można dotrzeć pieszo ze szkół w czasie 5, 10 i 15 minut. Analizę przeprowadzono z wykorzystaniem QGIS, PostgreSQL/PostGIS oraz pgRouting. Podstawą analizy była sieć piesza utworzona na podstawie danych OpenStreetMap, dla której czas przejścia poszczególnych odcinków określono na podstawie ich długości i przyjętej prędkości poruszania się.
+## Project Description
+This project presents an analysis of walking accessibility to schools in the central district of Szczecin using network analysis. The aim was to identify areas that can be reached on foot from schools within 5, 10 and 15 minutes. The analysis was carried out using QGIS, PostgreSQL/PostGIS and pgRouting. The analysis was based on a pedestrian network created from OpenStreetMap data. The walking time for each network segment was calculated based on its length and the assumed walking speed.
 
-## Wykorzystane technologie
-
+## Technologies Used
 - PostgreSQL
 - PostGIS
 - pgRouting
 - QGIS
 
-## Dane
+## Data Used
+The project uses the following data sources:
+- OpenStreetMap – locations of roads and schools
+- Szczecin Geoportal – boundaries of the central district
 
-W projekcie wykorzystano dane:
-- OpenStreetMap (lokalizacja sieci dróg, szkół),
-- Geoportal Szczecina (granice Śródmieścia).
+## Methodology
 
-## Metodyka
+### Data Preparation
+The spatial data was imported into a PostgreSQL database using PostGIS and transformed to a common coordinate reference system, EPSG:2176.
+Pedestrian-accessible elements of the OpenStreetMap network were selected for the analysis. Data from the planet_osm_roads and planet_osm_line layers were combined and then clipped to the area of the central district with an additional buffer.
 
-### Przygotowanie danych
-
-Dane przestrzenne zaimportowano do bazy PostgreSQL z wykorzystaniem PostGIS i przekształcono do wspólnego układu współrzędnych EPSG:2176.
-Z danych OpenStreetMap wyselekcjonowano elementy sieci możliwe do wykorzystania przez pieszych. Dane z warstw planet_osm_roads i planet_osm_line połączono, a następnie przycięto do obszaru Śródmieścia powiększonego o bufor.
-
-### Budowa grafu
-
-Na podstawie przygotowanej sieci utworzono węzły w miejscach końców i przecięć odcinków oraz dwukierunkowy graf sieci pieszej. Fragment utworzonego grafu przedstawiono poniżej.
+### Graph Construction
+Based on the prepared network, nodes were created at the endpoints and intersections of the network segments. A bidirectional pedestrian network graph was then created.
+A fragment of the graph is shown below.
 ![Fragment grafu](graf_szczecin.jpg)
-Dla każdej krawędzi obliczono jej długość oraz czas przejścia. Przyjęto następujące prędkości: 
-5 km/h – większość dróg,
-4,5 km/h – ścieżki,
-2,5 km/h – schody.
-Czas przejścia został zapisany w sekundach i wykorzystany jako koszt pokonania krawędzi w analizie sieciowej.
+For each edge, its length and walking time were calculated. The following walking speeds were used:
+5 km/h – most roads
+4.5 km/h – paths
+2.5 km/h – stairs
+The walking time was stored in seconds and used as the edge cost in the network analysis.
 
-### Analiza dostępności
+### Accessibility Analysis
+For each school, the nearest graph node was identified. The Dijkstra algorithm in pgRouting was then used to identify nodes that could be reached within 5, 10 and 15 minutes from each school.
+Based on the analysis results, walking-time isochrones were created and a final map was prepared in QGIS.
 
-Dla każdej szkoły znaleziono najbliższy węzeł grafu. Następnie z wykorzystaniem algorytmu Dijkstra w pgRouting wyznaczono węzły osiągalne w czasie do 5, 10 i 15 minut od każdej szkoły.
-Na podstawie wyników analizy utworzono izochrony czasu dojścia i przygotowano mapę wynikową w QGIS.
-
-## Mapa wynikowa
+## Final Map
 
 ![Mapa](szkoly.png)
 
-## Ograniczenia
+## Limitations
+OpenStreetMap data is community-generated, which may affect its completeness and accuracy.
+The central district of Szczecin includes not only densely developed urban areas but also water areas, forests and islands where school accessibility is less relevant due to the lack of residential areas. Therefore, the final map focuses on the left-bank part of the district, while a general overview map is provided for the entire central district.
 
-Należy uwzględnić, że dane OpenStreetMap mają charakter społecznościowy, co może wpływać na ich kompletność i aktualność.  
-Dzielnica Śródmieście Szczecina obejmuje tereny leżące w ścisłym centrum miasta, jak również tereny wód, lasów i wysp, dla których dostępność szkół z powodu niezamieszkania nie jest istotna. Dlatego też mapa wynikowa skupia się na lewobrzeżnej części dzielnicy, zachowując mapę poglądową dla całości Śródmieścia.
+## Conclusions
+The analysis made it possible to determine the spatial extent of walking accessibility to schools in the central district of Szczecin for the selected time thresholds of 5, 10 and 15 minutes. The results show that school accessibility varies spatially and depends not only on the distance to a school, but also on the layout and characteristics of the pedestrian network. Using walking time as the edge cost made it possible to account for different walking speeds on different types of infrastructure, including slower movement on stairs. The project demonstrates how OpenStreetMap, PostGIS and pgRouting can be used to perform accessibility analyses based on a real transportation network rather than distance in a straight line.
 
-## Wnioski
-
-Przeprowadzona analiza pozwoliła określić przestrzenny zasięg dostępności pieszej szkół w Śródmieściu Szczecina dla przyjętych progów czasowych 5, 10 i 15 minut.
-Wyniki pokazują, że dostępność szkół jest zróżnicowana przestrzennie i zależy nie tylko od odległości od szkoły, ale również od przebiegu oraz charakteru sieci pieszej. Zastosowanie czasu przejścia jako kosztu krawędzi pozwoliło uwzględnić różne prędkości poruszania się po poszczególnych typach infrastruktury, w tym wolniejsze pokonywanie schodów.
-Projekt pokazuje możliwość wykorzystania danych OpenStreetMap, PostGIS i pgRouting do przeprowadzania analiz dostępności opartych na rzeczywistej sieci komunikacyjnej, a nie wyłącznie na odległości w linii prostej.
-
-## Autor
-
+## Author
 Aleksandra Machałowska
