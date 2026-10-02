@@ -1,4 +1,4 @@
-# Walking Accessibility to Schools in Central Szczecin
+# Walking Accessibility to Schools in Szczecin Śródmieście
 
 ## Project Description
 This project presents an analysis of walking accessibility to schools in the central district of Szczecin using network analysis. The aim was to identify areas that can be reached on foot from schools within 5, 10 and 15 minutes. The analysis was carried out using QGIS, PostgreSQL/PostGIS and pgRouting. The analysis was based on a pedestrian network created from OpenStreetMap data. The walking time for each network segment was calculated based on its length and the assumed walking speed.
