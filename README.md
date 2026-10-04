@@ -31,8 +31,9 @@ For each edge, its length and walking time were calculated. The following walkin
 The walking time was stored in seconds and used as the edge cost in the network analysis.
 
 ### Accessibility Analysis
-For each school, the nearest graph node was identified. The Dijkstra algorithm in pgRouting was then used to identify nodes that could be reached within 5, 10 and 15 minutes from each school.
-Based on the analysis results, walking-time isochrones were created and a final map was prepared in QGIS.
+For each school, the nearest graph node was identified and used as the starting point for the network analysis.
+The Dijkstra algorithm implemented in pgRouting was used to calculate the shortest travel time from each school through the pedestrian network. The algorithm used the calculated walking time as the edge cost, so the resulting paths accounted for different walking speeds and network characteristics.
+The resulting travel times were then used to identify nodes reachable within 5, 10 and 15 minutes from each school. Based on these results, walking-time isochrones were created and a final map was prepared in QGIS.
 
 ## Final Map
 
